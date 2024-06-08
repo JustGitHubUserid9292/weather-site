@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .main-city {
+            background-color: #2196f3;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+        }
+        .main-city h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .main-city p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+        }
+        .other-cities {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .city-card {
+            background-color: #fff;
+            color: #2196f3;
+            border: 2px solid #2196f3;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            width: 150px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .city-card:hover {
+            background-color: #2196f3;
+            color: white;
+        }
+        .city-card h2 {
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .city-card p {
+            margin: 5px 0;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-city">
+        <h1></h1>
+        <p></p>
+    </div>
+    <div class="other-cities">
+        <div class="city-card" num="1">
+            <h2></h2>
+            <p></p>
+        </div>
+        <div class="city-card" num="2">
+            <h2></h2>
+            <p></p>
+        </div>
+        <div class="city-card" num="3">
+            <h2></h2>
+            <p></p>
+        </div>
+        <div class="city-card" num="4">
+            <h2></h2>
+            <p></p>
+        </div>
+    </div>
+</body>
+</html>
