@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
     <title>Weather Site</title>
     <style>
         body {
@@ -19,20 +20,37 @@
         .main-city {
             background-color: #2196f3;
             color: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             margin-bottom: 20px;
-            text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 80%;
+            position: relative;
         }
         .main-city h1 {
             margin: 0;
+            text-align: left;
             font-size: 2.5em;
         }
         .main-city p {
             margin: 10px 0 0;
+            text-align: left;
             font-size: 1.2em;
+        }
+        .additional-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .additional-info p {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0;
+            font-size: 0.8em;
         }
         .other-cities {
             display: flex;
@@ -62,32 +80,72 @@
         }
         .city-card p {
             margin: 5px 0;
-            font-size: 1em;
+            font-size: 0.8em;
         }
+        .hidden {
+            display: none;
+        }
+        .wi {
+            font-size: 15px;
+            margin-right: 5px;
+        }
+
     </style>
 </head>
 <body>
     <div class="main-city">
         <h1></h1>
         <p></p>
+        <div class="additional-info">
+            <p class="feels-like"></p>
+            <p class="humidity"></p>
+            <p class="temp-max"></p>
+            <p class="temp-min"></p>
+        </div>
+        
     </div>
     <div class="other-cities">
         <div class="city-card" num="1">
             <h2></h2>
             <p></p>
+            <div class="additional-info hidden">
+                <p class="feels-like"></p>
+                <p class="humidity"></p>
+                <p class="temp-max"></p>
+                <p class="temp-min"></p>   
+            </div>
         </div>
         <div class="city-card" num="2">
             <h2></h2>
             <p></p>
+            <div class="additional-info hidden">
+                <p class="feels-like"></p>
+                <p class="humidity"></p>
+                <p class="temp-max"></p>
+                <p class="temp-min"></p>   
+            </div>
         </div>
         <div class="city-card" num="3">
             <h2></h2>
             <p></p>
+            <div class="additional-info hidden">
+                <p class="feels-like"></p>
+                <p class="humidity"></p>
+                <p class="temp-max"></p>
+                <p class="temp-min"></p>   
+            </div>
         </div>
         <div class="city-card" num="4">
             <h2></h2>
             <p></p>
+        <div class="additional-info hidden">
+            <p class="feels-like"></p>
+            <p class="humidity"></p>
+            <p class="temp-max"></p>
+            <p class="temp-min"></p>   
         </div>
+
     </div>
 </body>
 </html>
+
