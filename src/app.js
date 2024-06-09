@@ -23,6 +23,18 @@ export default function app() {
             btn.querySelector('p').innerHTML = mainInfo.weather;
             btn.querySelector('.additional-info').innerHTML = mainInfo.additional_info
         });
+        function updateDate() {
+            const dateElement = document.getElementById('current-date');
+            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+            const today = new Date();
+            const dateString = today.toLocaleDateString('en-US', options);
+            dateElement.textContent = dateString;
+        }
+        
+        const interval = 24 * 60 * 60 * 1000
+        updateDate();
+        setInterval(updateDate, interval); 
+        
     });
 }
 

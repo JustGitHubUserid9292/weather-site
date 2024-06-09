@@ -3,7 +3,6 @@ export default function getWeather() {
         fetch('https://api.openweathermap.org/data/2.5/group?id=524901,498817,1496747,551487,1486209&appid=1693c13db95a0c2b55b2ed680a6b20a6')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 const mainCityCard = document.querySelector('.main-city');
                 const otherCityCards = document.querySelectorAll('.city-card');
                 mainCityCard.querySelector('h1').innerHTML = data.list[0].name;
