@@ -6,6 +6,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
     <title>Weather Site</title>
     <style>
+        @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+                color: white;
+            }
+            50% {
+                background-position: 100% 50%;
+                color: #a0a0a0;
+            }
+            100% {
+                background-position: 0% 50%;
+                color: white;
+            }
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -17,6 +32,7 @@
             justify-content: center;
             height: 100vh;
         }
+
         #vanta-background {
             position: fixed;
             top: 0;
@@ -25,14 +41,20 @@
             height: 100%;
             z-index: -1;
         }
+
         .site-title {
             position: fixed;
             top: 10px;
             left: 20px;
             font-size: 2.5em;
             font-family: Verdana, sans-serif;
-            color: whitesmoke;
+            color: white;
             z-index: 1;
+            background: linear-gradient(270deg, white, #a0a0a0, white);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientBackground 5s ease infinite;
         }
         .site-title i {
             margin-right: 5px;
@@ -41,7 +63,7 @@
         .main-city {
             background-color: rgba(33, 150, 243, 0.6);
             color: white;
-            padding: 40px 25px; 
+            padding: 50px 25px; 
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -59,6 +81,7 @@
         .main-city p {
             margin: 10px 0 0;
             text-align: left;
+            font-weight: bold;
             font-size: 1.2em;
         }
         .additional-info {
