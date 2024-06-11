@@ -1,10 +1,12 @@
 ![ESlint](https://github.com/JustGitHubUserid9292/weather-site/actions/workflows/main.yml/badge.svg)
 
-# Weather Site
+[![Netlify Status](https://api.netlify.com/api/v1/badges/361cca78-ae3d-4c75-af94-3e5c81aea429/deploy-status)](https://app.netlify.com/sites/dreamy-clafoutis-af57b2/deploys)
+
+# WeatherSphere
 
 ## Project Description
 
-Weather Site is a web application that displays the current weather for several cities. It uses the Vanta.js library for the animated background, as well as icons from the Weather Icons library. The design of the site is adaptive and made using CSS Flexbox. 
+WeatherSphere is a web application that displays the current weather for several cities. It uses the Vanta.js library for the animated background, as well as icons from the Weather Icons library. The design of the site is adaptive and made using CSS Flexbox. 
 
 ## Functionality
 
@@ -12,6 +14,7 @@ Weather Site is a web application that displays the current weather for several 
 - Display current date and day of the week.
 - Display weather for multiple cities.
 - Animation of the site name with shimmering colors.
+- Form in which you can change cities.
 
 ## Technologies used
 
@@ -20,5 +23,7 @@ Weather Site is a web application that displays the current weather for several 
 - JavaScript
 - Vanta.js
 - openweather API
+
 ## Deploy
-https://dreamy-clafoutis-af57b2.netlify.app/
+
+- https://dreamy-clafoutis-af57b2.netlify.app/
