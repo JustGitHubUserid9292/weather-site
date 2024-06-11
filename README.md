@@ -19,4 +19,4 @@ Weather Site is a web application that displays the current weather for several 
 - CSS3
 - JavaScript
 - Vanta.js
-- Weather Icons
+- openweather API
