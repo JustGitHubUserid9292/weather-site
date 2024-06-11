@@ -7,7 +7,6 @@ function loadScript(src, callback) {
     script.onload = callback;
     document.head.appendChild(script);
 }
-
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js', function() {
     loadScript('https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js', function() {
         VANTA.CLOUDS({

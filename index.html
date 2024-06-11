@@ -4,154 +4,265 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
-    <title>Weather Site</title>
+    <title>WeatherSphere</title>
     <style>
-        @keyframes gradientBackground {
-            0% {
-                background-position: 0% 50%;
-                color: white;
-            }
-            50% {
-                background-position: 100% 50%;
-                color: #2196f3;
-            }
-            100% {
-                background-position: 0% 50%;
-                color: white;
-            }
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        #vanta-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .site-title {
-            position: fixed;
-            top: 10px;
-            left: 20px;
-            font-size: 2.5em;
-            font-family: Verdana, sans-serif;
-            color: white;
-            z-index: 1;
-            background: linear-gradient(270deg, white, #2196f3, white);
-            background-size: 200% 200%;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientBackground 10s ease infinite;
-        }
-        .site-title i {
-            margin-right: 5px;
-            font-size: 1em;
-        }
-        .main-city {
-            background-color: rgba(33, 150, 243, 0.6);
-            color: white;
-            padding: 50px 25px; 
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            position: relative;
-        }
-        .city-name {
-            margin-bottom: 20px; 
-        }
-        .main-city h1 {
-            margin: 0;
-            text-align: left;
-            font-size: 2.5em;
-        }
-        .main-city p {
-            margin: 10px 0 0;
-            text-align: left;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        .additional-info {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .additional-info p {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 5px;
-            margin: 0;
-            font-size: 0.8em;
-        }
-        .other-cities {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .city-card {
-            background-color: rgba(255, 255, 255, 0);
-            color: rgba(33, 150, 243, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0);
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            width: 200px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .city-card:hover {
-            background-color: rgba(33, 150, 243, 0.2);
+    @keyframes gradientBackground {
+        0% {
+            background-position: 0% 50%;
             color: white;
         }
-        .city-card h2 {
-            margin: 10px 0;
-            font-size: 1em;
+        50% {
+            background-position: 100% 50%;
+            color: #2196f3;
         }
-        .city-card p {
-            margin: 5px 0;
-            font-size: 0.8em;
+        100% {
+            background-position: 0% 50%;
+            color: white;
         }
-        .hidden {
-            display: none;
-        }
-        .wi {
-            font-size: 15px;
-            margin-right: 5px;
-        }
-        .current-date {
-            position: absolute;
-            font-size: 1em;
-            font-weight: bold;
-            top: 20px;
-            left: 26px;
-        }
-    </style>
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    
+    #vanta-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    
+    .site-title {
+        position: fixed;
+        top: 10px;
+        left: 20px;
+        font-size: 2.5em;
+        font-family: Verdana, sans-serif;
+        color: white;
+        z-index: 1;
+        background: linear-gradient(270deg, white, #2196f3, white);
+        background-size: 200% 200%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientBackground 10s ease infinite;
+    }
+    .site-title i {
+        margin-right: 5px;
+        font-size: 1em;
+    }
+    .main-city {
+        background-color: rgba(33, 150, 243, 0.6);
+        color: white;
+        padding: 50px 25px; 
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        position: relative;
+    }
+    .city-name {
+        margin-bottom: 20px; 
+    }
+    .main-city h1 {
+        margin: 0;
+        text-align: left;
+        font-size: 2.5em;
+    }
+    .main-city p {
+        margin: 10px 0 0;
+        text-align: left;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    .additional-info {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .additional-info p {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 10px;
+        border-radius: 5px;
+        margin: 0;
+        font-size: 0.8em;
+    }
+    .other-cities {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .city-card {
+        background-color: rgba(255, 255, 255, 0);
+        color: rgba(33, 150, 243, 0.6);
+        border: 2px solid rgba(255, 255, 255, 0);
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        width: 200px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .city-card:hover {
+        background-color: rgba(33, 150, 243, 0.2);
+        color: white;
+    }
+    .city-card h2 {
+        margin: 10px 0;
+        font-size: 1em;
+    }
+    .city-card p {
+        margin: 5px 0;
+        font-size: 0.8em;
+    }
+    .wi {
+        font-size: 15px;
+        margin-right: 5px;
+    }
+    .current-date {
+        position: absolute;
+        font-size: 1em;
+        font-weight: bold;
+        top: 20px;
+        left: 26px;
+    }
+    .hourly-forecast {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        left: 600px;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    .forecast-card {
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        justify-content: center;
+        font-size: 0.8em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: rgba(200, 200, 200, 0.1);
+        width: 100px;
+    }
+    @media screen and (max-width: 1700px) {
+    .forecast-card {
+        width: calc(50% - 10px);
+    }
+    }
+    .forecast-card p {
+        text-align: center;
+    }
+    .form-container {
+        background-color: rgba(33, 150, 243, 0.6);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-title {
+        margin-bottom: 40px;
+        font-size: 1.2em;
+        color: white;
+    }
+    .form-description {
+        margin-bottom: 40px;
+        font-size: 0.8em;
+        color: white;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: #e3f2fd; 
+        color: black; 
+        outline: none; 
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #2196f3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #1976d2;
+    }
+    .hidden {
+        display: none;
+    }
+    .refresh-cities-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #2196f3;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+    }
+
+    .refresh-cities-button i {
+        font-size: 1.5em;
+        margin-left: 5px;
+    }
+
+    .refresh-cities-button:hover {
+        background-color: #1976d2;
+    }
+</style>        
 </head>
 <body>
     <div id="vanta-background"></div>
     <div class="site-title">
         <i class="wi wi-cloud"></i>
-        <span>openweather</span>
+        <span>WeatherSphere</span>
     </div>
-    <div class="main-city">
+    <div id="city-form" class="form-container">
+        <h2 class="form-title">Write the names of cities in which you want to track the weather.</h2>
+        <p class="form-description">If you leave the field(s) blank or make a mistake in the name, then they will be replaced with the default values.</p>
+        <form action="#">
+            <input type="text" id="main-city" name="main-city" placeholder="Main city (default: Moscow)">
+            <input type="text" id="city1" name="city1" placeholder="Other city (default: Saint Petersburg)" pattern="[A-Za-z ]+">
+            <input type="text" id="city2" name="city2" placeholder="Other city (default: Novosibirsk)" pattern="[A-Za-z ]+">
+            <input type="text" id="city3" name="city3" placeholder="Other city (default: Kazan')" pattern="[A-Za-z ]+">
+            <input type="text" id="city4" name="city4" placeholder="Other city (default: Ekaterinburg)" pattern="[A-Za-z ]+">
+            <input type="submit" value="Send">
+        </form>
+    </div>
+    <div class="main-city hidden">
         <div class="current-date" id="current-date"></div>
         <h1></h1>
         <p></p>
@@ -161,9 +272,36 @@
             <p class="temp-max"></p>
             <p class="temp-min"></p>
         </div>
-        
+        <div class="hourly-forecast">
+            <div class="forecast-card">
+                <p class="forecast-time" num="0"></p>
+                <p class="forecast-icon" num="0"></p>
+                <p class="forecast-temp" num="0"></p>
+            </div>
+            <div class="forecast-card" num="1">
+                <p class="forecast-time" num="1"></p>
+                <p class="forecast-icon" num="1"></p>
+                <p class="forecast-temp" num="1"></p>
+            </div>
+            <div class="forecast-card" num="2">
+                <p class="forecast-time" num="2"></p>
+                <p class="forecast-icon" num="2"></p>
+                <p class="forecast-temp" num="2"></p>
+            </div>
+            <div class="forecast-card" num="3">
+                <p class="forecast-time" num="3"></p>
+                <p class="forecast-icon" num="3"></p>
+                <p class="forecast-temp" num="3"></p>
+            </div>
+            <div class="forecast-card" num="4">
+                <p class="forecast-time" num="4"></p>
+                <p class="forecast-icon" num="4"></p>
+                <p class="forecast-temp" num="4"></p>
+            </div>
+        </div>
     </div>
-    <div class="other-cities">
+    </div>
+    <div class="other-cities hidden">
         <div class="city-card" num="1">
             <h2></h2>
             <p></p>
@@ -172,6 +310,33 @@
                 <p class="humidity"></p>
                 <p class="temp-max"></p>
                 <p class="temp-min"></p>   
+            </div>
+            <div class="hourly-forecast hidden">
+                <div class="forecast-card">
+                    <p class="forecast-time" num="0"></p>
+                    <p class="forecast-icon" num="0"></p>
+                    <p class="forecast-temp" num="0"></p>
+                </div>
+                <div class="forecast-card" num="1">
+                    <p class="forecast-time" num="1"></p>
+                    <p class="forecast-icon" num="1"></p>
+                    <p class="forecast-temp" num="1"></p>
+                </div>
+                <div class="forecast-card" num="2">
+                    <p class="forecast-time" num="2"></p>
+                    <p class="forecast-icon" num="2"></p>
+                    <p class="forecast-temp" num="2"></p>
+                </div>
+                <div class="forecast-card" num="3">
+                    <p class="forecast-time" num="3"></p>
+                    <p class="forecast-icon" num="3"></p>
+                    <p class="forecast-temp" num="3"></p>
+                </div>
+                <div class="forecast-card" num="4">
+                    <p class="forecast-time" num="4"></p>
+                    <p class="forecast-icon" num="4"></p>
+                    <p class="forecast-temp" num="4"></p>
+                </div>
             </div>
         </div>
         <div class="city-card" num="2">
@@ -183,6 +348,33 @@
                 <p class="temp-max"></p>
                 <p class="temp-min"></p>   
             </div>
+            <div class="hourly-forecast hidden">
+                <div class="forecast-card">
+                    <p class="forecast-time" num="0"></p>
+                    <p class="forecast-icon" num="0"></p>
+                    <p class="forecast-temp" num="0"></p>
+                </div>
+                <div class="forecast-card" num="1">
+                    <p class="forecast-time" num="1"></p>
+                    <p class="forecast-icon" num="1"></p>
+                    <p class="forecast-temp" num="1"></p>
+                </div>
+                <div class="forecast-card" num="2">
+                    <p class="forecast-time" num="2"></p>
+                    <p class="forecast-icon" num="2"></p>
+                    <p class="forecast-temp" num="2"></p>
+                </div>
+                <div class="forecast-card" num="3">
+                    <p class="forecast-time" num="3"></p>
+                    <p class="forecast-icon" num="3"></p>
+                    <p class="forecast-temp" num="3"></p>
+                </div>
+                <div class="forecast-card" num="4">
+                    <p class="forecast-time" num="4"></p>
+                    <p class="forecast-icon" num="4"></p>
+                    <p class="forecast-temp" num="4"></p>
+                </div>
+            </div>
         </div>
         <div class="city-card" num="3">
             <h2></h2>
@@ -192,6 +384,33 @@
                 <p class="humidity"></p>
                 <p class="temp-max"></p>
                 <p class="temp-min"></p>   
+            </div>
+            <div class="hourly-forecast hidden">
+                <div class="forecast-card">
+                    <p class="forecast-time" num="0"></p>
+                    <p class="forecast-icon" num="0"></p>
+                    <p class="forecast-temp" num="0"></p>
+                </div>
+                <div class="forecast-card" num="1">
+                    <p class="forecast-time" num="1"></p>
+                    <p class="forecast-icon" num="1"></p>
+                    <p class="forecast-temp" num="1"></p>
+                </div>
+                <div class="forecast-card" num="2">
+                    <p class="forecast-time" num="2"></p>
+                    <p class="forecast-icon" num="2"></p>
+                    <p class="forecast-temp" num="2"></p>
+                </div>
+                <div class="forecast-card" num="3">
+                    <p class="forecast-time" num="3"></p>
+                    <p class="forecast-icon" num="3"></p>
+                    <p class="forecast-temp" num="3"></p>
+                </div>
+                <div class="forecast-card" num="4">
+                    <p class="forecast-time" num="4"></p>
+                    <p class="forecast-icon" num="4"></p>
+                    <p class="forecast-temp" num="4"></p>
+                </div>
             </div>
         </div>
         <div class="city-card" num="4">
@@ -203,7 +422,36 @@
             <p class="temp-max"></p>
             <p class="temp-min"></p>   
         </div>
-
+        <div class="hourly-forecast hidden">
+            <div class="forecast-card">
+                <p class="forecast-time" num="0"></p>
+                <p class="forecast-icon" num="0"></p>
+                <p class="forecast-temp" num="0"></p>
+            </div>
+            <div class="forecast-card" num="1">
+                <p class="forecast-time" num="1"></p>
+                <p class="forecast-icon" num="1"></p>
+                <p class="forecast-temp" num="1"></p>
+            </div>
+            <div class="forecast-card" num="2">
+                <p class="forecast-time" num="2"></p>
+                <p class="forecast-icon" num="2"></p>
+                <p class="forecast-temp" num="2"></p>
+            </div>
+            <div class="forecast-card" num="3">
+                <p class="forecast-time" num="3"></p>
+                <p class="forecast-icon" num="3"></p>
+                <p class="forecast-temp" num="3"></p>
+            </div>
+            <div class="forecast-card" num="4">
+                <p class="forecast-time" num="4"></p>
+                <p class="forecast-icon" num="4"></p>
+                <p class="forecast-temp" num="4"></p>
+            </div>
+        </div>
+    </div>
+    <div class="refresh-cities-button" id="refresh-cities-button">
+        <i class="wi wi-cloud-refresh"></i>
     </div>
 </body>
 </html>
