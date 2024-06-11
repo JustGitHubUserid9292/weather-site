@@ -1,5 +1,5 @@
-import getWeather from "./getWeather";
-import getCitiesID from "./getCitiesID";
+import getWeather from "./getWeather.js";
+import getCitiesID from "./getCitiesID.js";
 
 export default function app() {
     const otherCities = document.querySelector('.other-cities')
