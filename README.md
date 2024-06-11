@@ -20,3 +20,5 @@ Weather Site is a web application that displays the current weather for several 
 - JavaScript
 - Vanta.js
 - openweather API
+## Deploy
+https://dreamy-clafoutis-af57b2.netlify.app/
