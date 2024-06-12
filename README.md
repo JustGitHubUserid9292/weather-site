@@ -4,7 +4,7 @@
 
 ## Project Description
 
-WeatherSphere is a web application that displays the current weather for several cities. It uses the Vanta.js library for the animated background, as well as icons from the Weather Icons library. The design of the site is adaptive and made using CSS Flexbox. 
+TrackWeather is a web application that displays the current weather for several cities. It uses the Vanta.js library for the animated background, as well as icons from the Weather Icons library. The design of the site is adaptive and made using CSS Flexbox. 
 
 ## Functionality
 
