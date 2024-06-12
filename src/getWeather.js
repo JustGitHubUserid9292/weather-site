@@ -61,7 +61,7 @@ export default function getWeather(list = defaultCitiesID) {
                 console.error('Error when retrieving weather data:', error);
             });
     }
-    const interval = 60 * 1000; // 1 минута
+    const interval = 60 * 10000; // 10 минут
     updateWeather();
     setTimeout(updateWeather, interval);
 }
