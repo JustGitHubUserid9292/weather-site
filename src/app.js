@@ -22,7 +22,6 @@ export default function app() {
             Promise.all(getCitiesID(listOfCities)).then(result => {
                 const defaultCitiesID = ['524901','498817','1496747','551487','1486209'];
                 if (result.includes(false)) {
-                    console.log(result);
                     for (let i = 0; i < result.length; i++) {
                         if (result[i] === false) {
                             result[i] = defaultCitiesID[i];

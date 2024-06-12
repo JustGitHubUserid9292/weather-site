@@ -1,6 +1,6 @@
 ![ESlint](https://github.com/JustGitHubUserid9292/weather-site/actions/workflows/main.yml/badge.svg) [![Netlify Status](https://api.netlify.com/api/v1/badges/361cca78-ae3d-4c75-af94-3e5c81aea429/deploy-status)](https://app.netlify.com/sites/dreamy-clafoutis-af57b2/deploys)
 
-# WeatherSphere
+# TrackWeather
 
 ## Project Description
 
@@ -24,4 +24,4 @@ WeatherSphere is a web application that displays the current weather for several
 
 ## Deploy
 
-- https://dreamy-clafoutis-af57b2.netlify.app/
+- https://trackweather5.netlify.app/
