@@ -61,6 +61,67 @@
         margin-right: 5px;
         font-size: 1em;
     }
+    #search-form {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#search-city {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    width: 300px;
+    position: relative;
+    z-index: 1; 
+}
+#search-city[type="active"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 25px 25px 0 0; /* Закругленные углы сверху */
+    width: 300px;
+    position: relative;
+    z-index: 2; /* Поверх подсказок */
+}
+
+#search-suggestions {
+    position: absolute;
+    top: 33px; /* Отступ от поля ввода */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 340px;
+    background: rgba(255, 255, 255, 0.5); /* Прозрачный фон для сочетания с полем ввода */
+    border-radius: 0 0 25px 25px; /* Закругленные углы снизу */
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1; /* Под полем ввода */
+    display: none;
+    border: none; /* Убираем обводку */
+}
+
+#search-suggestions ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#search-suggestions li {
+    padding: 10px 20px;
+    cursor: pointer;
+    background: transparent;
+    border-bottom: 1px solid transparent; /* Разделительная линия */
+}
+
+#search-suggestions li:hover {
+    background-color: rgba(240, 240, 240, 0.3); /* Серая подложка при наведении */
+}
+
     .main-city {
         background-color: rgba(33, 150, 243, 0.6);
         color: white;
@@ -100,36 +161,6 @@
         margin: 0;
         font-size: 0.8em;
     }
-    .other-cities {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .city-card {
-        background-color: rgba(255, 255, 255, 0);
-        color: rgba(33, 150, 243, 0.6);
-        border: 2px solid rgba(255, 255, 255, 0);
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        width: 200px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    .city-card:hover {
-        background-color: rgba(33, 150, 243, 0.2);
-        color: white;
-    }
-    .city-card h2 {
-        margin: 10px 0;
-        font-size: 1em;
-    }
-    .city-card p {
-        margin: 5px 0;
-        font-size: 0.8em;
-    }
     .wi {
         font-size: 15px;
         margin-right: 5px;
@@ -163,61 +194,12 @@
     .forecast-card {
         width: calc(50% - 10px);
     }
+    .hourly-forecast {
+        left: 500px;
+    }
     }
     .forecast-card p {
         text-align: center;
-    }
-    .form-container {
-        background-color: rgba(33, 150, 243, 0.6);
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 90%;
-        max-width: 500px;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-    .form-title {
-        margin-bottom: 40px;
-        font-size: 1.2em;
-        color: white;
-    }
-    .form-description {
-        margin-bottom: 40px;
-        font-size: 0.8em;
-        color: white;
-    }
-
-    input[type="text"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 5px;
-        box-sizing: border-box;
-        background-color: #e3f2fd; 
-        color: black; 
-        outline: none; 
-    }
-
-    input[type="submit"] {
-        padding: 10px 20px;
-        background-color: #2196f3;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%;
-    }
-
-    input[type="submit"]:hover {
-        background-color: #1976d2;
-    }
-    .hidden {
-        display: none;
     }
     .refresh-cities-button {
         position: fixed;
@@ -242,6 +224,9 @@
 
     .refresh-cities-button:hover {
         background-color: #1976d2;
+    }
+    .hidden {
+        display: none;
     }
     @media screen and (min-width: 900px) and (max-width: 1024px) and (min-height: 1200px) and (max-height: 1366px) { /*/tablet vertically*/
         .hourly-forecast {
@@ -324,19 +309,12 @@
         <i class="wi wi-cloud"></i>
         <span>trackweather</span>
     </div>
-    <div id="city-form" class="form-container">
-        <h2 class="form-title">Write the names of cities in which you want to track the weather.</h2>
-        <p class="form-description">If you leave the field(s) blank or make a mistake in the name, then they will be replaced with the default values.</p>
-        <form action="#">
-            <input type="text" id="main-city" name="main-city" placeholder="Main city (default: Moscow)">
-            <input type="text" id="city1" name="city1" placeholder="Other city (default: Saint Petersburg)">
-            <input type="text" id="city2" name="city2" placeholder="Other city (default: Novosibirsk)">
-            <input type="text" id="city3" name="city3" placeholder="Other city (default: Kazan')">
-            <input type="text" id="city4" name="city4" placeholder="Other city (default: Ekaterinburg)">
-            <input type="submit" value="Send">
-        </form>
+    <div id="search-form">
+        <input type="text" id="search-city" placeholder="Search for a city">
+        <div id="search-suggestions"></div>
     </div>
-    <div class="main-city hidden">
+    </div>
+    <div class="main-city">
         <div class="current-date" id="current-date"></div>
         <h1></h1>
         <p></p>
@@ -375,156 +353,7 @@
         </div>
     </div>
     </div>
-    <div class="other-cities hidden">
-        <div class="city-card" num="1">
-            <h2></h2>
-            <p></p>
-            <div class="additional-info hidden">
-                <p class="feels-like"></p>
-                <p class="humidity"></p>
-                <p class="temp-max"></p>
-                <p class="temp-min"></p>   
-            </div>
-            <div class="hourly-forecast hidden">
-                <div class="forecast-card">
-                    <p class="forecast-time" num="0"></p>
-                    <p class="forecast-icon" num="0"></p>
-                    <p class="forecast-temp" num="0"></p>
-                </div>
-                <div class="forecast-card" num="1">
-                    <p class="forecast-time" num="1"></p>
-                    <p class="forecast-icon" num="1"></p>
-                    <p class="forecast-temp" num="1"></p>
-                </div>
-                <div class="forecast-card" num="2">
-                    <p class="forecast-time" num="2"></p>
-                    <p class="forecast-icon" num="2"></p>
-                    <p class="forecast-temp" num="2"></p>
-                </div>
-                <div class="forecast-card" num="3">
-                    <p class="forecast-time" num="3"></p>
-                    <p class="forecast-icon" num="3"></p>
-                    <p class="forecast-temp" num="3"></p>
-                </div>
-                <div class="forecast-card" num="4">
-                    <p class="forecast-time" num="4"></p>
-                    <p class="forecast-icon" num="4"></p>
-                    <p class="forecast-temp" num="4"></p>
-                </div>
-            </div>
-        </div>
-        <div class="city-card" num="2">
-            <h2></h2>
-            <p></p>
-            <div class="additional-info hidden">
-                <p class="feels-like"></p>
-                <p class="humidity"></p>
-                <p class="temp-max"></p>
-                <p class="temp-min"></p>   
-            </div>
-            <div class="hourly-forecast hidden">
-                <div class="forecast-card">
-                    <p class="forecast-time" num="0"></p>
-                    <p class="forecast-icon" num="0"></p>
-                    <p class="forecast-temp" num="0"></p>
-                </div>
-                <div class="forecast-card" num="1">
-                    <p class="forecast-time" num="1"></p>
-                    <p class="forecast-icon" num="1"></p>
-                    <p class="forecast-temp" num="1"></p>
-                </div>
-                <div class="forecast-card" num="2">
-                    <p class="forecast-time" num="2"></p>
-                    <p class="forecast-icon" num="2"></p>
-                    <p class="forecast-temp" num="2"></p>
-                </div>
-                <div class="forecast-card" num="3">
-                    <p class="forecast-time" num="3"></p>
-                    <p class="forecast-icon" num="3"></p>
-                    <p class="forecast-temp" num="3"></p>
-                </div>
-                <div class="forecast-card" num="4">
-                    <p class="forecast-time" num="4"></p>
-                    <p class="forecast-icon" num="4"></p>
-                    <p class="forecast-temp" num="4"></p>
-                </div>
-            </div>
-        </div>
-        <div class="city-card" num="3">
-            <h2></h2>
-            <p></p>
-            <div class="additional-info hidden">
-                <p class="feels-like"></p>
-                <p class="humidity"></p>
-                <p class="temp-max"></p>
-                <p class="temp-min"></p>   
-            </div>
-            <div class="hourly-forecast hidden">
-                <div class="forecast-card">
-                    <p class="forecast-time" num="0"></p>
-                    <p class="forecast-icon" num="0"></p>
-                    <p class="forecast-temp" num="0"></p>
-                </div>
-                <div class="forecast-card" num="1">
-                    <p class="forecast-time" num="1"></p>
-                    <p class="forecast-icon" num="1"></p>
-                    <p class="forecast-temp" num="1"></p>
-                </div>
-                <div class="forecast-card" num="2">
-                    <p class="forecast-time" num="2"></p>
-                    <p class="forecast-icon" num="2"></p>
-                    <p class="forecast-temp" num="2"></p>
-                </div>
-                <div class="forecast-card" num="3">
-                    <p class="forecast-time" num="3"></p>
-                    <p class="forecast-icon" num="3"></p>
-                    <p class="forecast-temp" num="3"></p>
-                </div>
-                <div class="forecast-card" num="4">
-                    <p class="forecast-time" num="4"></p>
-                    <p class="forecast-icon" num="4"></p>
-                    <p class="forecast-temp" num="4"></p>
-                </div>
-            </div>
-        </div>
-        <div class="city-card" num="4">
-            <h2></h2>
-            <p></p>
-        <div class="additional-info hidden">
-            <p class="feels-like"></p>
-            <p class="humidity"></p>
-            <p class="temp-max"></p>
-            <p class="temp-min"></p>   
-        </div>
-        <div class="hourly-forecast hidden">
-            <div class="forecast-card">
-                <p class="forecast-time" num="0"></p>
-                <p class="forecast-icon" num="0"></p>
-                <p class="forecast-temp" num="0"></p>
-            </div>
-            <div class="forecast-card" num="1">
-                <p class="forecast-time" num="1"></p>
-                <p class="forecast-icon" num="1"></p>
-                <p class="forecast-temp" num="1"></p>
-            </div>
-            <div class="forecast-card" num="2">
-                <p class="forecast-time" num="2"></p>
-                <p class="forecast-icon" num="2"></p>
-                <p class="forecast-temp" num="2"></p>
-            </div>
-            <div class="forecast-card" num="3">
-                <p class="forecast-time" num="3"></p>
-                <p class="forecast-icon" num="3"></p>
-                <p class="forecast-temp" num="3"></p>
-            </div>
-            <div class="forecast-card" num="4">
-                <p class="forecast-time" num="4"></p>
-                <p class="forecast-icon" num="4"></p>
-                <p class="forecast-temp" num="4"></p>
-            </div>
-        </div>
-    </div>
-    <div class="refresh-cities-button" id="refresh-cities-button">
+    <div class="refresh-cities-button hidden" id="refresh-cities-button">
         <i class="wi wi-cloud-refresh"></i>
     </div>
 </body>
