@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="module" src="./src/index.js"></script>
     <title>TrackWeather</title>
     <style>
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
     @keyframes gradientBackground {
         0% {
             background-position: 0% 50%;
@@ -32,6 +43,18 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
+    }
+    
+    .loader-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .loader-container i {
+        font-size: 50px; 
+        color: #2196f3; 
     }
     
     #vanta-background {
@@ -84,25 +107,25 @@
     border: none;
     outline: none;
     background: rgba(255, 255, 255, 0.5);
-    border-radius: 25px 25px 0 0; /* Закругленные углы сверху */
+    border-radius: 25px 25px 0 0; 
     width: 300px;
     position: relative;
-    z-index: 2; /* Поверх подсказок */
+    z-index: 2; 
 }
 
 #search-suggestions {
     position: absolute;
-    top: 33px; /* Отступ от поля ввода */
+    top: 33px; 
     left: 50%;
     transform: translateX(-50%);
     width: 340px;
-    background: rgba(255, 255, 255, 0.5); /* Прозрачный фон для сочетания с полем ввода */
-    border-radius: 0 0 25px 25px; /* Закругленные углы снизу */
+    background: rgba(255, 255, 255, 0.5); 
+    border-radius: 0 0 25px 25px; 
     max-height: 200px;
     overflow-y: auto;
-    z-index: 1; /* Под полем ввода */
+    z-index: 1; 
     display: none;
-    border: none; /* Убираем обводку */
+    border: none; 
 }
 
 #search-suggestions ul {
@@ -115,14 +138,16 @@
     padding: 10px 20px;
     cursor: pointer;
     background: transparent;
-    border-bottom: 1px solid transparent; /* Разделительная линия */
+    border-bottom: 1px solid transparent; 
 }
 
 #search-suggestions li:hover {
-    background-color: rgba(240, 240, 240, 0.3); /* Серая подложка при наведении */
+    background-color: rgba(240, 240, 240, 0.3); 
 }
 
     .main-city {
+        opacity: 0;
+        animation: fadeIn 0.3s ease forwards; /* анимация появления */
         background-color: rgba(33, 150, 243, 0.6);
         color: white;
         padding: 50px 25px; 
@@ -131,6 +156,10 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         width: 80%;
         position: relative;
+    }
+    .main-city.hidden {
+        opacity: 1;
+        visibility: hidden;
     }
     .city-name {
         margin-bottom: 20px; 
@@ -172,13 +201,27 @@
         top: 20px;
         left: 26px;
     }
+    .hourly-forecast-title {
+        position: absolute;
+        font-size: 1em;
+        font-weight: bold;
+        top: 16px;
+        left: 600px;
+    }
+    .daily-forecast-title {
+        position: absolute;
+        font-size: 1em;
+        font-weight: bold;
+        top: 205px;
+        left: 600px;
+    }
     .hourly-forecast {
         display: flex;
         position: absolute;
         top: 20px;
         left: 600px;
         gap: 10px;
-        margin-top: 20px;
+        margin-top: 30px;
     }
     .forecast-card {
         color: white;
@@ -189,6 +232,27 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         background-color: rgba(200, 200, 200, 0.1);
         width: 100px;
+    }
+    .daily-forecast {
+        display: flex;
+        position: absolute;
+        top: 210px;
+        left: 600px;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    .daily-card {
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        justify-content: center;
+        font-size: 0.8em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: rgba(200, 200, 200, 0.1);
+        width: 100px;
+    }
+    .daily-card p {
+        text-align: center;
     }
     @media screen and (max-width: 1700px) {
     .forecast-card {
@@ -224,6 +288,28 @@
 
     .refresh-cities-button:hover {
         background-color: #1976d2;
+    }
+    .sunrise-section, .sunset-section {
+        display: inline-block; 
+        vertical-align: top; 
+        margin-top: 20px;
+        margin-right: 10px; 
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 0.8em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: rgba(200, 200, 200, 0.1);
+        width: 120px; 
+        text-align: center; 
+    }
+
+    .sunrise-section p, .sunset-section p {
+        text-align: center;
+        padding: 5px;
+    }
+    .sunset-icon i, .sunrise-icon i {
+        font-size: 1.5em;
     }
     .hidden {
         display: none;
@@ -309,20 +395,38 @@
         <i class="wi wi-cloud"></i>
         <span>trackweather</span>
     </div>
+    <div class="loader-container">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
     <div id="search-form">
-        <input type="text" id="search-city" placeholder="Search for a city">
+        <input type="text" id="search-city" placeholder="&#x1F50E; Search for a city">
         <div id="search-suggestions"></div>
     </div>
     </div>
-    <div class="main-city">
+    <div class="main-city hidden">
         <div class="current-date" id="current-date"></div>
+        <div class="hourly-forecast-title">Today at:</div>
+        <div class="daily-forecast-title">5 Days Forecast:</div>
         <h1></h1>
         <p></p>
+        <div class="sunrise-section">
+            <p class="sunrise-title">Sunrise</p>
+            <p class="sunrise-icon"><i class="wi wi-horizon-alt"></i></p>
+            <p class="sunrise-time"></p>
+        </div>
+        <div class="sunset-section">
+            <p class="sunset-title">Sunset</p>
+            <p class="sunset-icon"><i class="wi wi-moonrise"></i></p>
+            <p class="sunset-time"></p>
+        </div>
         <div class="additional-info">
             <p class="feels-like"></p>
             <p class="humidity"></p>
             <p class="temp-max"></p>
             <p class="temp-min"></p>
+            <p class="wind-speed"></p>
+            <p class="pressure"></p>
+            <p class="visibility"></p>
         </div>
         <div class="hourly-forecast">
             <div class="forecast-card">
@@ -351,6 +455,34 @@
                 <p class="forecast-temp" num="4"></p>
             </div>
         </div>
+        <div class="daily-forecast">
+            <div class="daily-card">
+                <p class="daily-date" num="0"></p>
+                <p class="daily-icon" num="0"></p>
+                <p class="daily-temp" num="0"></p>
+            </div>
+            <div class="daily-card" num="1">
+                <p class="daily-date" num="1"></p>
+                <p class="daily-icon" num="1"></p>
+                <p class="daily-temp" num="1"></p>
+            </div>
+            <div class="daily-card" num="2">
+                <p class="daily-date" num="2"></p>
+                <p class="daily-icon" num="2"></p>
+                <p class="daily-temp" num="2"></p>
+            </div>
+            <div class="daily-card" num="3">
+                <p class="daily-date" num="3"></p>
+                <p class="daily-icon" num="3"></p>
+                <p class="daily-temp" num="3"></p>
+            </div>
+            <div class="daily-card" num="4">
+                <p class="daily-date" num="4"></p>
+                <p class="daily-icon" num="4"></p>
+                <p class="daily-temp" num="4"></p>
+            </div>
+        </div>
+    </div>
     </div>
     </div>
     <div class="refresh-cities-button hidden" id="refresh-cities-button">

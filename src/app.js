@@ -6,8 +6,8 @@ export default function app() {
     const mainCityCard = document.querySelector('.main-city');
     const searchInput = document.querySelector('#search-form')
     const refresh = document.querySelector('.refresh-cities-button')
-    const searchSuggestions = document.getElementById('search-suggestions');
     const searchCity = document.querySelector('#search-city')
+    const loader = document.querySelector('.loader-container')
 
     function handleInput(event) {
         const searchTerm = event.target.value
@@ -40,6 +40,8 @@ export default function app() {
             li.textContent = `${city.name}, ${city.sys.country}`;
             li.addEventListener('click', () => {
                 searchCity.value = '';
+                loader.classList.add('hidden')
+                mainCityCard.classList.remove('hidden')
                 getWeather(city.name, city.sys.country);
                 searchSuggestions.style.display = 'none';
                 searchCity.removeAttribute('type');
@@ -60,7 +62,6 @@ export default function app() {
     }
 
     searchInput.addEventListener('input', handleInput)
-    getWeather();
     refresh.addEventListener('click', () => {
         const title = document.querySelector('.form-title')
         title.textContent = 'You can change previously selected cities.'

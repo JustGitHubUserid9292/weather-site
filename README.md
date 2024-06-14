@@ -12,7 +12,7 @@ TrackWeather is a web application that displays the current weather for several 
 - Display current date and day of the week.
 - Display weather for multiple cities.
 - Animation of the site name with shimmering colors.
-- Form in which you can change cities.
+- The ability to search for any city in the world.
 
 ## Technologies used
 
