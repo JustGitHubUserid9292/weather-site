@@ -265,7 +265,7 @@
     .forecast-card p {
         text-align: center;
     }
-    .refresh-cities-button {
+    .translate-button {
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -275,18 +275,14 @@
         height: 50px;
         border-radius: 50%;
         display: flex;
+        font-style: bold;
         align-items: center;
         justify-content: center;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         cursor: pointer;
     }
 
-    .refresh-cities-button i {
-        font-size: 1.5em;
-        margin-left: 5px;
-    }
-
-    .refresh-cities-button:hover {
+    .translate-button:hover {
         background-color: #1976d2;
     }
     .sunrise-section, .sunset-section {
@@ -485,8 +481,8 @@
     </div>
     </div>
     </div>
-    <div class="refresh-cities-button hidden" id="refresh-cities-button">
-        <i class="wi wi-cloud-refresh"></i>
+    <div class="translate-button hidden" id="translate-button">
+        <i>en</i>
     </div>
 </body>
 </html>

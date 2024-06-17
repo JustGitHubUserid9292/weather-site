@@ -13,6 +13,7 @@ TrackWeather is a web application that displays the current weather for several 
 - Display weather for multiple cities.
 - Animation of the site name with shimmering colors.
 - The ability to search for any city in the world.
+- Ability to translate interface elements.
 
 ## Technologies used
 
@@ -20,6 +21,7 @@ TrackWeather is a web application that displays the current weather for several 
 - CSS3
 - JavaScript
 - Vanta.js
+- i18next
 - openweather API
 
 ## Deploy

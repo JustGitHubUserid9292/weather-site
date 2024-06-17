@@ -1,11 +1,11 @@
 import getWeather from "./getWeather.js";
-import getCityID from "./getCitiesID.js";
+import changeLanguage from "./translate.js";
 
 export default function app() {
     const otherCities = document.querySelector('.other-cities')
     const mainCityCard = document.querySelector('.main-city');
     const searchInput = document.querySelector('#search-form')
-    const refresh = document.querySelector('.refresh-cities-button')
+    const translate = document.querySelector('.translate-button')
     const searchCity = document.querySelector('#search-city')
     const loader = document.querySelector('.loader-container')
 
@@ -42,6 +42,7 @@ export default function app() {
                 searchCity.value = '';
                 loader.classList.add('hidden')
                 mainCityCard.classList.remove('hidden')
+                translate.classList.remove('hidden')
                 getWeather(city.name, city.sys.country);
                 searchSuggestions.style.display = 'none';
                 searchCity.removeAttribute('type');
@@ -60,14 +61,16 @@ export default function app() {
             searchSuggestions.style.display = 'block';
         }
     }
+    
+    let count = 0;
 
     searchInput.addEventListener('input', handleInput)
-    refresh.addEventListener('click', () => {
-        const title = document.querySelector('.form-title')
-        title.textContent = 'You can change previously selected cities.'
-        mainCityCard.classList.add('hidden')
-        otherCities.classList.add('hidden')
-        formSection.classList.remove('hidden')
+    translate.addEventListener('click', () => {
+       if (count % 2 === 0) {
+         translate.textContent = 'ru'
+       } else { translate.textContent = 'en'}
+       changeLanguage(translate.textContent)
+       count += 1
     })
     function updateDate() {
         const dateElement = document.getElementById('current-date');

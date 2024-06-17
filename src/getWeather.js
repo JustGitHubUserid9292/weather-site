@@ -46,8 +46,6 @@ export default function getWeather(cityname, code) {
             .then(response => response.json())
             .then(data => {
                 const currentWeather = data;
-                console.log(currentWeather)
-
                 mainCityCard.querySelector('h1').textContent = `${currentWeather.name}, ${code}`;
                 mainCityCard.querySelector('p').innerHTML = `${Math.round(currentWeather.main.temp)}&deg;C, ${currentWeather.weather[0].description}<br><br><img src="http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}.png" alt="Weather Icon">`;
                 mainCityCard.querySelector('.feels-like').innerHTML = `<i class="wi wi-alien"></i> Feels like: ${Math.round(currentWeather.main.feels_like)}&deg;C`;
@@ -66,10 +64,8 @@ export default function getWeather(cityname, code) {
         fetch(`https://api.openweathermap.org/data/2.5/forecast/?q=${cityname},${code}&units=metric&appid=${apiKey}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 const dailyForecast = data.list.slice(8).filter((item, index) => index % 8 === 0);
                 dailyForecast.push(data.list[39])
-                console.log(dailyForecast)
                 const dailyforecastDates = mainCityCard.querySelectorAll('.daily-date');
                 dailyforecastDates.forEach((elm, index) => {
                     elm.innerHTML = new Date(dailyForecast[index].dt_txt).toLocaleString('en-US', { day: 'numeric', month: 'short' });
