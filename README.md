@@ -23,6 +23,7 @@ TrackWeather is a web application that displays the current weather for several 
 - Vanta.js
 - i18next
 - openweather API
+- TestRail
 
 ## Deploy
 
